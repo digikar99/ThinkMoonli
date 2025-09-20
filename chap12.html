@@ -753,7 +753,7 @@ For example, the following function takes two parameters, <code class="docutils 
 <p>If a function has both required and optional parameters, all of the required parameters have to come first, followed by the optional ones.</p>
 </section>
 <section id="dictionary-subtraction">
-<span id="section-dictionary-subtraction"></span><h2><span class="section-number">12.5. </span>Dictionary subtraction<a class="headerlink" href="#dictionary-subtraction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">12.5. </span>Dictionary subtraction<a class="headerlink" href="#dictionary-subtraction" title="Link to this heading">#</a></h2>
 <p>Suppose we want to spell-check a book – that is, find a list of words that might be misspelled.
 One way to do that is to find words in the book that don’t appear in a list of valid words.
 In previous chapters, we’ve used a list of words that are considered valid in word games like Scrabble.
@@ -895,7 +895,9 @@ We can import it like this.</p>
 <p>If you use <code class="docutils literal notranslate"><span class="pre">choice</span></code> with a dictionary, you get a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">word_counter</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> KeyError
+
+random.choice(word_counter)
 </pre></div>
 </div>
 </div>
@@ -1339,7 +1341,7 @@ For example, we can make a dictionary that maps from each bigram – or trigram 
 As an exercise, you’ll have a chance to implement this analysis and see what the results look like.</p>
 </section>
 <section id="debugging">
-<span id="section-debugging-12"></span><h2><span class="section-number">12.10. </span>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">12.10. </span>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
 <p>At this point we are writing more substantial programs, and you might find that you are spending more time debugging.
 If you are stuck on a difficult bug, here are a few things to try:</p>
 <ul class="simple">
@@ -1441,11 +1443,56 @@ Ask a VA, “What are the differences between large language models like GPT and
 <p>Write a function that counts the number of times each trigram (sequence of three words) appears.
 If you test your function with the text of <em>Dr. Jekyll and Mr. Hyde</em>, you should find that the most common trigram is “said the lawyer”.</p>
 <p>Hint: Write a function called <code class="docutils literal notranslate"><span class="pre">count_trigram</span></code> that is similar to <code class="docutils literal notranslate"><span class="pre">count_bigram</span></code>. Then write a function called <code class="docutils literal notranslate"><span class="pre">process_word_trigram</span></code> that is similar to <code class="docutils literal notranslate"><span class="pre">process_word_bigram</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_trigram</span><span class="p">(</span><span class="n">trigram</span><span class="p">):</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">trigram</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">trigram_counter</span><span class="p">:</span>
+        <span class="n">trigram_counter</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trigram_counter</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_word_trigram</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">count_trigram</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id1">
 <h3><span class="section-number">12.12.3. </span>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Now let’s implement Markov chain text analysis with a mapping from each bigram to a list of possible successors.</p>
 <p>Starting with <code class="docutils literal notranslate"><span class="pre">add_bigram</span></code>, write a function called <code class="docutils literal notranslate"><span class="pre">add_trigram</span></code> that takes a list of three words and either adds or updates an item in <code class="docutils literal notranslate"><span class="pre">successor_map</span></code>, using the first two words as the key and the third word as a possible successor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_trigram</span><span class="p">(</span><span class="n">trigram</span><span class="p">):</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="n">trigram</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span>
+    
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">successor_map</span><span class="p">:</span>
+        <span class="n">successor_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">third</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">successor_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">third</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Here’s a version of <code class="docutils literal notranslate"><span class="pre">process_word_trigram</span></code> that calls <code class="docutils literal notranslate"><span class="pre">add_trigram</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1500,6 +1547,26 @@ If you test your function with the text of <em>Dr. Jekyll and Mr. Hyde</em>, you
 <li><p>For the next iteration, make a new bigram that contains the second word from <code class="docutils literal notranslate"><span class="pre">bigram</span></code> and the chosen successor.</p></li>
 </ol>
 <p>For example, if we start with the bigram <code class="docutils literal notranslate"><span class="pre">('doubted',</span> <span class="pre">'if')</span></code> and choose <code class="docutils literal notranslate"><span class="pre">'from'</span></code> as its successor, the next bigram is <code class="docutils literal notranslate"><span class="pre">('if',</span> <span class="pre">'from')</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">successors</span> <span class="o">=</span> <span class="n">successor_map</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">successors</span><span class="p">)</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    
+    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">bigram</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">second</span><span class="p">,</span> <span class="n">word</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>from that day forth utterson desired the society of his ape-like spite and indeed when the night was fully come he set it down to dinner why do you think before you answer for it god bless me the deadliest terror sits by me at the table and still he 
+</pre></div>
+</div>
+</div>
+</div>
 <p>If everything is working, you should find that the generated text is recognizably similar in style to the original, and some phrases make sense, but the text might wander from one topic to another.</p>
 <p>As a bonus exercise, modify your solution to the last two exercises to use trigrams as keys in <code class="docutils literal notranslate"><span class="pre">successor_map</span></code>, and see what effect it has on the results.</p>
 <p><a class="reference external" href="https://allendowney.github.io/ThinkPython/index.html">Think Python: 3rd Edition</a></p>

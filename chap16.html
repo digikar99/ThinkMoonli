@@ -401,7 +401,7 @@ And we’ve defined methods that create, modify, and perform computations with t
 We’ll write methods that create and modify these objects, and we’ll use the <code class="docutils literal notranslate"><span class="pre">jupyturtle</span></code> module to draw them.</p>
 <p>I’ll use these classes to demonstrate OOP topics including object identity and equivalence, shallow and deep copying, and polymorphism.</p>
 <section id="creating-a-point">
-<span id="section-create-point"></span><h2><span class="section-number">16.1. </span>Creating a Point<a class="headerlink" href="#creating-a-point" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.1. </span>Creating a Point<a class="headerlink" href="#creating-a-point" title="Link to this heading">#</a></h2>
 <p>In computer graphics a location on the screen is often represented using a pair of coordinates in an <code class="docutils literal notranslate"><span class="pre">x</span></code>-<code class="docutils literal notranslate"><span class="pre">y</span></code> plane.
 By convention, the point <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> usually represents the upper-left corner of the screen, and  <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> represents the point <code class="docutils literal notranslate"><span class="pre">x</span></code> units to the right and <code class="docutils literal notranslate"><span class="pre">y</span></code> units down from the origin.
 Compared to the Cartesian coordinate system you might have seen in a math class, the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis is upside-down.</p>
@@ -556,7 +556,7 @@ Then, when they are converted to strings, the <code class="docutils literal notr
 </div>
 <p>String representations and object diagrams are useful for debugging, but the point of this example is to generate graphics, not text!
 So we’ll use the <code class="docutils literal notranslate"><span class="pre">jupyturtle</span></code> module to draw lines on the screen.</p>
-<p>As we did in <a class="reference internal" href="chap04.html#section-turtle-module"><span class="std std-ref">Chapter 4</span></a>, we’ll use <code class="docutils literal notranslate"><span class="pre">make_turtle</span></code> to create a <code class="docutils literal notranslate"><span class="pre">Turtle</span></code> object and a small canvas where it can draw.
+<p>As we did in <a class="reference internal" href="#section_turtle_module"><span class="xref myst">Chapter 4</span></a>, we’ll use <code class="docutils literal notranslate"><span class="pre">make_turtle</span></code> to create a <code class="docutils literal notranslate"><span class="pre">Turtle</span></code> object and a small canvas where it can draw.
 To draw lines, we’ll use two new functions from the <code class="docutils literal notranslate"><span class="pre">jupyturtle</span></code> module:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">jumpto</span></code>, which takes two coordinates and moves the <code class="docutils literal notranslate"><span class="pre">Turtle</span></code> to the given location without drawing a line, and</p></li>
@@ -1221,6 +1221,20 @@ def __eq__(self, other):
 </div>
 </div>
 </div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_method_to</span> Line
+
+def __eq__(self, other):
+    if (self.p1 == other.p1) and (self.p2 == other.p2):
+        return True
+    if (self.p1 == other.p2) and (self.p2 == other.p1):
+        return True
+    return False
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can use these examples to test your code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1297,6 +1311,18 @@ def __eq__(self, other):
 
     def midpoint(self):
         return Point(0, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_method_to</span> Line
+
+    def midpoint(self):
+        mid_x = (self.p1.x + self.p2.x) / 2
+        mid_y = (self.p1.y + self.p2.y) / 2
+        return Point(mid_x, mid_y)
 </pre></div>
 </div>
 </div>
@@ -1388,6 +1414,18 @@ def __eq__(self, other):
 </div>
 </div>
 </div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_method_to</span> Rectangle
+
+    def midpoint(self):
+        mid_x = self.corner.x + self.width / 2
+        mid_y = self.corner.y + self.height / 2
+        return Point(mid_x, mid_y)
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can use the following example to test your code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1472,6 +1510,22 @@ def __eq__(self, other):
 </div>
 </div>
 </div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">add_method_to</span> Rectangle
+
+    def make_cross(self):
+        midpoints = []
+
+        for line in self.make_lines():
+            midpoints.append(line.midpoint())
+
+        p1, p2, p3, p4 = midpoints
+        return Line(p1, p3), Line(p2, p4)
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can use the following example to test your code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1542,6 +1596,28 @@ Include special methods <code class="docutils literal notranslate"><span class="
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
         <span class="n">left</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Circle(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="si">}</span><span class="s1">)&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">translated</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">jumpto</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">start</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">draw_circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

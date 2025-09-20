@@ -374,7 +374,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.11. Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-a-virtual-assistant">11.11.1. Ask a virtual assistant</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">11.11.2. Exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#section-exercise-11">11.11.3. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.11.3. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">11.11.4. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">11.11.5. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">11.11.6. Exercise</a></li>
@@ -396,7 +396,7 @@ document.write(`
 <a class="reference external" href="https://bookshop.org/a/98697/9781098155438">Bookshop.org</a> and
 <a class="reference external" href="https://www.amazon.com/_/dp/1098155432?smid=ATVPDKIKX0DER&amp;amp;_encoding=UTF8&amp;amp;tag=oreilly20-20&amp;amp;_encoding=UTF8&amp;amp;tag=greenteapre01-20&amp;amp;linkCode=ur2&amp;amp;linkId=e2a529f94920295d27ec8a06e757dc7c&amp;amp;camp=1789&amp;amp;creative=9325">Amazon</a>.</p>
 <section id="tuples">
-<span id="chapter-tuples"></span><h1><span class="section-number">11. </span>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h1>
 <p>This chapter introduces one more built-in type, the tuple, and then shows how lists, dictionaries, and tuples work together.
 It also presents tuple assignment and a useful feature for functions with variable-length argument lists: the packing and unpacking operators.</p>
 <p>In the exercises, we’ll use tuples, along with lists and dictionaries, to solve more word puzzles and implement efficient algorithms.</p>
@@ -593,7 +593,8 @@ For example, the bracket operator indexes an element.</p>
 <p>If you try to modify a tuple with the bracket operator, you get a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;L&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+t[0] = &#39;L&#39;
 </pre></div>
 </div>
 </div>
@@ -606,7 +607,9 @@ For example, the bracket operator indexes an element.</p>
 <p>And tuples don’t have any of the methods that modify lists, like <code class="docutils literal notranslate"><span class="pre">append</span></code> and <code class="docutils literal notranslate"><span class="pre">remove</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> AttributeError
+
+t.remove(&#39;l&#39;)
 </pre></div>
 </div>
 </div>
@@ -722,7 +725,8 @@ For example, to split an email address into a user name and a domain, you could 
 right have to be the same – otherwise you get a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> ValueError
+a, b = 1, 2, 3
 </pre></div>
 </div>
 </div>
@@ -875,7 +879,7 @@ of two values, the quotient and remainder.</p>
 </div>
 </section>
 <section id="argument-packing">
-<span id="section-argument-pack"></span><h2><span class="section-number">11.5. </span>Argument packing<a class="headerlink" href="#argument-packing" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.5. </span>Argument packing<a class="headerlink" href="#argument-packing" title="Link to this heading">#</a></h2>
 <p>Functions can take a variable number of arguments.
 A parameter name that begins with the <code class="docutils literal notranslate"><span class="pre">*</span></code> operator <strong>packs</strong> arguments into a tuple.
 For example, the following function takes any number of arguments and computes their arithmetic mean – that is, their sum divided by the number of arguments.</p>
@@ -905,8 +909,9 @@ We can call the function like this:</p>
 For example, <code class="docutils literal notranslate"><span class="pre">divmod</span></code> takes exactly two arguments – if you pass a tuple as a parameter, you get an error.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="nb">divmod</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+t = (7, 3)
+divmod(t)
 </pre></div>
 </div>
 </div>
@@ -1325,7 +1330,7 @@ Otherwise it is appended to the existing list.</p>
 We will see more!</p>
 </section>
 <section id="debugging">
-<span id="section-debugging-11"></span><h2><span class="section-number">11.9. </span>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.9. </span>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
 <p>Lists, dictionaries and tuples are <strong>data structures</strong>.
 In this chapter we are starting to see compound data structures, like lists of tuples, or dictionaries that contain tuples as keys and lists as values.
 Compound data structures are useful, but they are prone to errors caused when a data structure has the wrong type, size, or structure.
@@ -1481,10 +1486,25 @@ But that is not always true.</p>
 </div>
 </div>
 <p>Write a line of code that appends the value <code class="docutils literal notranslate"><span class="pre">6</span></code> to the end of the second list in <code class="docutils literal notranslate"><span class="pre">t</span></code>. If you display <code class="docutils literal notranslate"><span class="pre">t</span></code>, the result should be <code class="docutils literal notranslate"><span class="pre">([1,</span> <span class="pre">2,</span> <span class="pre">3],</span> <span class="pre">[4,</span> <span class="pre">5,</span> <span class="pre">6])</span></code>.</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1, 2, 3], [4, 5, 6])
+</pre></div>
+</div>
+</div>
+</div>
 <p>Try to create a dictionary that maps from <code class="docutils literal notranslate"><span class="pre">t</span></code> to a string, and confirm that you get a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <div class="cell tag_solution tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="s1">&#39;this tuple contains two lists&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+
+d = {t: &#39;this tuple contains two lists&#39;}
 </pre></div>
 </div>
 </div>
@@ -1503,8 +1523,8 @@ But that is not always true.</p>
 </div>
 <p>For more on this topic, ask a virtual assistant, “Are Python tuples always hashable?”</p>
 </section>
-<section id="section-exercise-11">
-<span id="id1"></span><h3><span class="section-number">11.11.3. </span>Exercise<a class="headerlink" href="#section-exercise-11" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3><span class="section-number">11.11.3. </span>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>In this chapter we made a dictionary that maps from each letter to its index in the alphabet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1550,11 +1570,45 @@ by a fixed number of places in the alphabet, wrapping around to the beginning if
 <p>Hints: Use the modulus operator to wrap around from <code class="docutils literal notranslate"><span class="pre">'z'</span></code> back to <code class="docutils literal notranslate"><span class="pre">'a'</span></code>.
 Loop through the letters of the word, shift each one, and append the result to a list of letters.
 Then use <code class="docutils literal notranslate"><span class="pre">join</span></code> to concatenate the letters into a string.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shift_word</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shift the letters of `word` by `n` places.</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; shift_word(&#39;cheer&#39;, 7)</span>
+<span class="sd">    &#39;jolly&#39;</span>
+<span class="sd">    &gt;&gt;&gt; shift_word(&#39;melon&#39;, 16)</span>
+<span class="sd">    &#39;cubed&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">letter_map</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letters</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id2">
 <h3><span class="section-number">11.11.4. </span>Exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Write a function called <code class="docutils literal notranslate"><span class="pre">most_frequent_letters</span></code> that takes a string and prints the letters in decreasing order of frequency.</p>
 <p>To get the items in decreasing order, you can use <code class="docutils literal notranslate"><span class="pre">reversed</span></code> along with <code class="docutils literal notranslate"><span class="pre">sorted</span></code> or you can pass <code class="docutils literal notranslate"><span class="pre">reverse=True</span></code> as a keyword parameter to <code class="docutils literal notranslate"><span class="pre">sorted</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">most_frequent_letters</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">value_counts</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">second_element</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id3">
 <h3><span class="section-number">11.11.5. </span>Exercise<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -1569,11 +1623,52 @@ Here is an example of what the output might look like:</p>
 </pre></div>
 </div>
 <p>Hint: For each word in the word list, sort the letters and join them back into a string. Make a dictionary that maps from this sorted string to a list of words that are anagrams of it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">anagram_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">sort_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anagram_dict</span><span class="p">:</span>
+        <span class="n">anagram_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">anagram_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id4">
 <h3><span class="section-number">11.11.6. </span>Exercise<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>Write a function called <code class="docutils literal notranslate"><span class="pre">word_distance</span></code> that takes two words with the same length and returns the number of places where the two words differ.</p>
 <p>Hint: Use <code class="docutils literal notranslate"><span class="pre">zip</span></code> to loop through the corresponding letters of the words.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">word_distance</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the number of places where two word differ.</span>
+
+<span class="sd">    &gt;&gt;&gt; word_distance(&quot;hello&quot;, &quot;hxllo&quot;)</span>
+<span class="sd">    1</span>
+<span class="sd">    &gt;&gt;&gt; word_distance(&quot;ample&quot;, &quot;apply&quot;)</span>
+<span class="sd">    2</span>
+<span class="sd">    &gt;&gt;&gt; word_distance(&quot;kitten&quot;, &quot;mutton&quot;)</span>
+<span class="sd">    3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">word2</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">c1</span> <span class="o">!=</span> <span class="n">c2</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id5">
 <h3><span class="section-number">11.11.7. </span>Exercise<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -1582,6 +1677,199 @@ Two words form a “metathesis pair” if you can transform one into the other b
 Write a program that finds all of the metathesis pairs in the word list.</p>
 <p>Hint: The words in a metathesis pair must be anagrams of each other.</p>
 <p>Credit: This exercise is inspired by an example at <a class="reference external" href="http://puzzlers.org">http://puzzlers.org</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">for</span> <span class="n">anagrams</span> <span class="ow">in</span> <span class="n">anagram_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">word1</span> <span class="ow">in</span> <span class="n">anagrams</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">word2</span> <span class="ow">in</span> <span class="n">anagrams</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="ow">and</span> <span class="n">word1</span> <span class="o">&lt;</span> <span class="n">word2</span> <span class="ow">and</span> <span class="n">word_distance</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aerologies areologies
+antimonies antinomies
+bedrugging begrudging
+certification rectification
+certifications rectifications
+certifiers rectifiers
+certifying rectifying
+certitudes rectitudes
+concerting concreting
+conservation conversation
+conservations conversations
+conserving conversing
+deification edification
+deifications edifications
+denotation detonation
+denotations detonations
+discanting distancing
+dissention distension
+dissentions distensions
+dormancies mordancies
+livenesses vilenesses
+frumenties furmenties
+garmenting margenting
+lamenesses malenesses
+limestones milestones
+misdealing misleading
+molarities moralities
+monarchies nomarchies
+monologies nomologies
+performing preforming
+portending protending
+presetting pretesting
+questionnaire questionniare
+questionnaires questionniares
+regelating relegating
+repertoires repertories
+rowdinesses wordinesses
+sepulchers sepulchres
+solitaires solitaries
+spotlights stoplights
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">children</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a list of all words that can be formed by removing one letter.</span>
+
+<span class="sd">    word: string</span>
+
+<span class="sd">    Returns: list of strings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+        <span class="n">child</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="sd">&quot;&quot;&quot;memo is a dictionary that maps from each word that is known</span>
+<span class="sd">to be reducible to a list of its reducible children. </span>
+<span class="sd">It starts with the empty string.&quot;&quot;&quot;</span>
+
+<span class="n">memo</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">memo</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reduce_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If word is reducible, returns a list of its reducible children.</span>
+
+<span class="sd">    Also adds an entry to the memo dictionary.</span>
+
+<span class="sd">    A string is reducible if it has at least one child that is </span>
+<span class="sd">    reducible.  The empty string is also reducible.</span>
+
+<span class="sd">    word: string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+     <span class="c1"># if have already checked this word, return the answer</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">memo</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+
+    <span class="c1"># check each of the children and make a list of the reducible ones</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">reduce_word</span><span class="p">(</span><span class="n">child</span><span class="p">):</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+    <span class="c1"># memoize and return the result</span>
+    <span class="n">memo</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_trail</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints the sequence of words that reduces this word to the empty string.</span>
+
+<span class="sd">    If there is more than one choice, it chooses the first.</span>
+
+<span class="sd">    word: string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">reduce_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">print_trail</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">all_reducible</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks all words in the word_dict; returns a list of reducible ones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">reduce_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">word_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+    <span class="n">word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># have to add single letter words to the word list;</span>
+<span class="c1"># also, the empty string is considered a word.</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]:</span>
+    <span class="n">word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># find the reducible words and sort by length</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">all_reducible</span><span class="p">()</span>
+<span class="n">sorted_words</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="c1"># print the longest words</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]:</span>
+    <span class="n">print_trail</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wranglers wanglers anglers angers agers ages age ae a 
+wrappings wrapping rapping raping aping ping pig pi i 
+carrousels carousels carouses arouses arouse arose arse are ae a 
+completing competing compting comping coping oping ping pig pi i 
+insolating isolating solating slating sating sting ting tin in i 
+restarting restating estating stating sating sting ting tin in i 
+staunchest stanchest stanches stances stanes sanes anes ane ae a 
+stranglers strangers stranger strange strang stang tang tag ta a 
+twitchiest witchiest withiest withies withes wites wits its is i 
+complecting completing competing compting comping coping oping ping pig pi i 
+</pre></div>
+</div>
+</div>
+</div>
 <p><a class="reference external" href="https://allendowney.github.io/ThinkPython/index.html">Think Python: 3rd Edition</a></p>
 <p>Copyright 2024 <a class="reference external" href="https://allendowney.com">Allen B. Downey</a></p>
 <p>Code license: <a class="reference external" href="https://mit-license.org/">MIT License</a></p>
@@ -1667,7 +1955,7 @@ Write a program that finds all of the metathesis pairs in the word list.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">11.11. Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-a-virtual-assistant">11.11.1. Ask a virtual assistant</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">11.11.2. Exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#section-exercise-11">11.11.3. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.11.3. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">11.11.4. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">11.11.5. Exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">11.11.6. Exercise</a></li>

@@ -398,7 +398,7 @@ document.write(`
 <a class="reference external" href="https://bookshop.org/a/98697/9781098155438">Bookshop.org</a> and
 <a class="reference external" href="https://www.amazon.com/_/dp/1098155432?smid=ATVPDKIKX0DER&amp;amp;_encoding=UTF8&amp;amp;tag=oreilly20-20&amp;amp;_encoding=UTF8&amp;amp;tag=greenteapre01-20&amp;amp;linkCode=ur2&amp;amp;linkId=e2a529f94920295d27ec8a06e757dc7c&amp;amp;camp=1789&amp;amp;creative=9325">Amazon</a>.</p>
 <section id="inheritance">
-<span id="chapter-inheritance"></span><h1><span class="section-number">17. </span>Inheritance<a class="headerlink" href="#inheritance" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Inheritance<a class="headerlink" href="#inheritance" title="Link to this heading">#</a></h1>
 <p>The language feature most often associated with object-oriented programming is <strong>inheritance</strong>.
 Inheritance is the ability to define a new class that is a modified version of an existing class.
 In this chapter I demonstrate inheritance using classes that represent playing cards, decks of cards, and poker hands.
@@ -719,7 +719,9 @@ Otherwise it invokes<code class="docutils literal notranslate"><span class="pre"
 If we use one of the relational operators, we get a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">queen</span> <span class="o">&lt;</span> <span class="n">queen2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+
+queen &lt; queen2
 </pre></div>
 </div>
 </div>
@@ -900,7 +902,7 @@ Each iteration creates a new <code class="docutils literal notranslate"><span cl
 <p>It contains 52 cards, as intended.</p>
 </section>
 <section id="printing-the-deck">
-<span id="section-print-deck"></span><h2><span class="section-number">17.6. </span>Printing the deck<a class="headerlink" href="#printing-the-deck" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.6. </span>Printing the deck<a class="headerlink" href="#printing-the-deck" title="Link to this heading">#</a></h2>
 <p>Here is a <code class="docutils literal notranslate"><span class="pre">__str__</span></code> method for <code class="docutils literal notranslate"><span class="pre">Deck</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

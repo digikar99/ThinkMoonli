@@ -473,7 +473,9 @@ An index is an offset from the beginning of the string, so the offset of the fir
 <p>But the value of the index has to be an integer – otherwise you get a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span><span class="p">[</span><span class="mf">1.5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+
+fruit[1.5]
 </pre></div>
 </div>
 </div>
@@ -500,7 +502,9 @@ An index is an offset from the beginning of the string, so the offset of the fir
 <p>To get the last letter of a string, you might be tempted to write this:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> IndexError
+
+fruit[n]
 </pre></div>
 </div>
 </div>
@@ -614,8 +618,10 @@ see.</p>
 assignment, with the intention of changing a character in a string, like this:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">greeting</span> <span class="o">=</span> <span class="s1">&#39;Hello, world!&#39;</span>
-<span class="n">greeting</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> TypeError
+
+greeting = &#39;Hello, world!&#39;
+greeting[0] = &#39;J&#39;
 </pre></div>
 </div>
 </div>
@@ -748,7 +754,7 @@ The empty parentheses indicate that this method takes no arguments.</p>
 <p>A method call is called an <strong>invocation</strong>; in this case, we would say that we are invoking <code class="docutils literal notranslate"><span class="pre">upper</span></code> on <code class="docutils literal notranslate"><span class="pre">word</span></code>.</p>
 </section>
 <section id="writing-files">
-<span id="section-writing-files"></span><h2><span class="section-number">8.6. </span>Writing files<a class="headerlink" href="#writing-files" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.6. </span>Writing files<a class="headerlink" href="#writing-files" title="Link to this heading">#</a></h2>
 <p>String operators and methods are useful for reading and writing text files.
 As an example, we’ll work with the text of <em>Dracula</em>, a novel by Bram Stoker that is available from Project Gutenberg (<a class="reference external" href="https://www.gutenberg.org/ebooks/345">https://www.gutenberg.org/ebooks/345</a>).</p>
 <p>I’ve downloaded the book in a plain text file called <code class="docutils literal notranslate"><span class="pre">pg345.txt</span></code>, which we can open for reading like this:</p>
@@ -1342,6 +1348,31 @@ For more information, ask a virtual assistant, “What is a raw string in Python
 It should take as arguments the name of a file to read, the number of lines to read, and the name of the file to write the lines into.
 If the third parameter is <code class="docutils literal notranslate"><span class="pre">None</span></code>, it should display the lines rather than write them to a file.</p>
 <p>Consider asking a virtual assistant for help, but if you do, tell it not to use a <code class="docutils literal notranslate"><span class="pre">with</span></code> statement or a <code class="docutils literal notranslate"><span class="pre">try</span></code> statement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">head</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">num_lines</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_lines</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            
+    <span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">output_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id1">
 <h3><span class="section-number">8.12.3. </span>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -1353,11 +1384,69 @@ You would learn that <code class="docutils literal notranslate"><span class="pre
 <p>As a different example, suppose you have guessed the words <code class="docutils literal notranslate"><span class="pre">SPADE</span></code> and <code class="docutils literal notranslate"><span class="pre">CLERK</span></code>, and you’ve learned that <code class="docutils literal notranslate"><span class="pre">E</span></code> is in the word, but not in either of those positions, and none of the other letters appear in the word.
 Of the words in the word list, how many could be the target word?
 Write a function called <code class="docutils literal notranslate"><span class="pre">check_word</span></code> that takes a five-letter word and checks whether it could be the target word, given these guesses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;e&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;e&#39;</span> <span class="ow">or</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="n">uses_any</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;spadclrk&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>You can use any of the functions from the previous chapter, like <code class="docutils literal notranslate"><span class="pre">uses_any</span></code>.</p>
 </section>
 <section id="id2">
 <h3><span class="section-number">8.12.4. </span>Exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Continuing the previous exercise, suppose you guess the work <code class="docutils literal notranslate"><span class="pre">TOTEM</span></code> and learn that the <code class="docutils literal notranslate"><span class="pre">E</span></code> is <em>still</em> not in the right place, but the <code class="docutils literal notranslate"><span class="pre">M</span></code> is. How many words are left?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_word2</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">check_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;words.txt&#39;</span><span class="p">):</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">and</span> <span class="n">check_word2</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>begum
+enzym
+genom
+venom
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id3">
 <h3><span class="section-number">8.12.5. </span>Exercise<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -1367,6 +1456,60 @@ Nevertheless, in the introduction of an English translation of the book, the wri
 <p>To see whether his objection is valid, let’s count the number number of lines that contain the word <code class="docutils literal notranslate"><span class="pre">pale</span></code> in any form, including <code class="docutils literal notranslate"><span class="pre">pale</span></code>, <code class="docutils literal notranslate"><span class="pre">pales</span></code>, <code class="docutils literal notranslate"><span class="pre">paled</span></code>, and <code class="docutils literal notranslate"><span class="pre">paleness</span></code>, as well as the related word <code class="docutils literal notranslate"><span class="pre">pallor</span></code>.
 Use a single regular expression that matches any of these words.
 As an additional challenge, make sure that it doesn’t match any other words, like <code class="docutils literal notranslate"><span class="pre">impale</span></code> – you might want to ask a virtual assistant for help.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;pg1184_cleaned.txt&#39;</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="c1"># This solution uses only features we&#39;ve seen in the chapter,</span>
+<span class="c1"># but it also matches words that contain these string, like &quot;impale&quot;.</span>
+
+<span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;(pale|pales|paled|paleness|pallor)&#39;</span>
+<span class="n">count_matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>239
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="c1"># This solution uses the special sequence \b to match a word boundary,</span>
+<span class="c1"># which can be any kind of white space or punctuation.</span>
+<span class="c1"># The `r` before the quotation mark indicates that the pattern is</span>
+<span class="c1"># a raw string, which is needed because the pattern contains a</span>
+<span class="c1"># special sequence.</span>
+
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b(pale|pales|paled|paleness|pallor)\b&#39;</span>
+<span class="n">count_matches</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>223
+</pre></div>
+</div>
+</div>
+</div>
 <p><a class="reference external" href="https://allendowney.github.io/ThinkPython/index.html">Think Python: 3rd Edition</a></p>
 <p>Copyright 2024 <a class="reference external" href="https://allendowney.com">Allen B. Downey</a></p>
 <p>Code license: <a class="reference external" href="https://mit-license.org/">MIT License</a></p>

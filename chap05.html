@@ -999,7 +999,9 @@ In Python, there is a limit to the number of frames that can be on the stack at 
 If a program exceeds the limit, it causes a runtime error.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recurse</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> RecursionError
+
+recurse()
 </pre></div>
 </div>
 </div>
@@ -1088,7 +1090,9 @@ What do you mean: an African or European swallow?
 <p>But if they type something that’s not an integer, you’ll get a runtime error.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> ValueError
+
+int(speed)
 </pre></div>
 </div>
 </div>
@@ -1114,8 +1118,9 @@ Errors related to spaces and tabs can be tricky because they are invisible
 and we are used to ignoring them.</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
- <span class="n">y</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> IndentationError
+x = 5
+ y = 6
 </pre></div>
 </div>
 </div>
@@ -1135,11 +1140,12 @@ Error messages indicate where the problem was discovered, but the actual error m
 For example, suppose you are trying to convert a ratio to decibels, like this:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="n">numerator</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">denominator</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">ratio</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">//</span> <span class="n">denominator</span>
-<span class="n">decibels</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">expect</span> ValueError
+import math
+numerator = 9
+denominator = 10
+ratio = numerator // denominator
+decibels = 10 * math.log10(ratio)
 </pre></div>
 </div>
 </div>
@@ -1321,6 +1327,71 @@ returns the number of seconds since the “Unix epoch”, which is January 1, 19
 </div>
 <p>Use integer division and the modulus operator to compute the number of days since January 1, 1970 and the current time of day in hours, minutes, and seconds.</p>
 <p>You can read more about the <code class="docutils literal notranslate"><span class="pre">time</span></code> module at <a class="reference external" href="https://docs.python.org/3/library/time.html">https://docs.python.org/3/library/time.html</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">seconds_per_day</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
+<span class="n">days</span> <span class="o">=</span> <span class="n">now</span> <span class="o">//</span> <span class="n">seconds_per_day</span>
+<span class="n">days</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19865.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">remainder</span> <span class="o">=</span> <span class="n">now</span> <span class="o">%</span> <span class="n">seconds_per_day</span>
+
+<span class="n">hours</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">//</span> <span class="mi">3600</span>
+<span class="n">hours</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">remainder</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">%</span> <span class="mi">3600</span>
+
+<span class="n">minutes</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">//</span> <span class="mi">60</span>
+<span class="n">minutes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="n">seconds</span> <span class="o">=</span> <span class="n">remainder</span> <span class="o">%</span> <span class="mi">60</span>
+<span class="n">seconds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41.84661340713501
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id1">
 <h3><span class="section-number">5.14.3. </span>Exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -1362,6 +1433,24 @@ shows the state of the program when it prints the result.</p>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="sd">&quot;&quot;&quot;Adds up the numbers from 1 to `n`</span>
+
+<span class="sd">n: integer</span>
+<span class="sd">s: the sum of the numbers so far</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Adds up the numbers from 1 to `n`\n\nn: integer\ns: the sum of the numbers so far\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="id3">
 <h3><span class="section-number">5.14.5. </span>Exercise<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -1390,6 +1479,153 @@ If you are not sure you understand how it works, try asking a virtual assistant.
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">jupyturtle</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_turtle</span>
+
+<span class="n">make_turtle</span><span class="p">(</span><span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">draw</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg width="300" height="150">
+    <rect width="100%" height="100%" fill="#F3F3F7" />
+
+<line x1="150" y1="75" x2="200.0" y2="75.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="200.0" y1="75.0" x2="219.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="52.0" x2="216.2" y2="34.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="34.3" x2="206.8" y2="28.9"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="28.9" x2="200.7" y2="31.1"
+    stroke="#663399" stroke-width="2" />
+<line x1="200.7" y1="31.1" x2="206.8" y2="28.9"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="28.9" x2="205.7" y2="22.5"
+    stroke="#663399" stroke-width="2" />
+<line x1="205.7" y1="22.5" x2="206.8" y2="28.9"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="28.9" x2="216.2" y2="34.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="34.3" x2="223.1" y2="26.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="26.0" x2="222.0" y2="19.6"
+    stroke="#663399" stroke-width="2" />
+<line x1="222.0" y1="19.6" x2="223.1" y2="26.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="26.0" x2="229.6" y2="26.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="229.6" y1="26.0" x2="223.1" y2="26.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="26.0" x2="216.2" y2="34.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="34.3" x2="219.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="52.0" x2="237.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="52.0" x2="244.2" y2="43.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="43.7" x2="243.1" y2="37.4"
+    stroke="#663399" stroke-width="2" />
+<line x1="243.1" y1="37.4" x2="244.2" y2="43.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="43.7" x2="250.7" y2="43.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="250.7" y1="43.7" x2="244.2" y2="43.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="43.7" x2="237.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="52.0" x2="244.2" y2="60.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="60.3" x2="250.7" y2="60.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="250.7" y1="60.3" x2="244.2" y2="60.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="60.3" x2="243.1" y2="66.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="243.1" y1="66.7" x2="244.2" y2="60.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="60.3" x2="237.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="52.0" x2="219.3" y2="52.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="52.0" x2="200.0" y2="75.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="200.0" y1="75.0" x2="219.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="98.0" x2="237.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="98.0" x2="244.2" y2="89.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="89.7" x2="243.1" y2="83.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="243.1" y1="83.3" x2="244.2" y2="89.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="89.7" x2="250.7" y2="89.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="250.7" y1="89.7" x2="244.2" y2="89.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="89.7" x2="237.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="98.0" x2="244.2" y2="106.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="106.3" x2="250.7" y2="106.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="250.7" y1="106.3" x2="244.2" y2="106.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="106.3" x2="243.1" y2="112.6"
+    stroke="#663399" stroke-width="2" />
+<line x1="243.1" y1="112.6" x2="244.2" y2="106.3"
+    stroke="#663399" stroke-width="2" />
+<line x1="244.2" y1="106.3" x2="237.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="237.3" y1="98.0" x2="219.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="98.0" x2="216.2" y2="115.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="115.7" x2="223.1" y2="124.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="124.0" x2="229.6" y2="124.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="229.6" y1="124.0" x2="223.1" y2="124.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="124.0" x2="222.0" y2="130.4"
+    stroke="#663399" stroke-width="2" />
+<line x1="222.0" y1="130.4" x2="223.1" y2="124.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="223.1" y1="124.0" x2="216.2" y2="115.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="115.7" x2="206.8" y2="121.1"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="121.1" x2="205.7" y2="127.5"
+    stroke="#663399" stroke-width="2" />
+<line x1="205.7" y1="127.5" x2="206.8" y2="121.1"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="121.1" x2="200.7" y2="118.9"
+    stroke="#663399" stroke-width="2" />
+<line x1="200.7" y1="118.9" x2="206.8" y2="121.1"
+    stroke="#663399" stroke-width="2" />
+<line x1="206.8" y1="121.1" x2="216.2" y2="115.7"
+    stroke="#663399" stroke-width="2" />
+<line x1="216.2" y1="115.7" x2="219.3" y2="98.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="219.3" y1="98.0" x2="200.0" y2="75.0"
+    stroke="#663399" stroke-width="2" />
+<line x1="200.0" y1="75.0" x2="150.0" y2="75.0"
+    stroke="#663399" stroke-width="2" />
+
+<g transform="rotate(-90.0,150.0,75.0) translate(150.0, 75.0)">
+    <circle stroke="#63A375" stroke-width="2" fill="transparent" r="5.5" cx="0" cy="0"/>
+    <polygon points="0,12 2,9 -2,9" style="fill:#63A375;stroke:#63A375;stroke-width:2"/>
+</g>
+
+</svg></div></div>
+</div>
 </section>
 <section id="id4">
 <h3><span class="section-number">5.14.6. </span>Exercise<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
@@ -1407,6 +1643,26 @@ have to do is</p>
 </ol>
 <p>The exception is if <code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">5</span></code> – in that case, you can just draw a straight line with length <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <p>Write a function called <code class="docutils literal notranslate"><span class="pre">koch</span></code> that takes <code class="docutils literal notranslate"><span class="pre">x</span></code> as an argument and draws a Koch curve with the given length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">koch</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draws a koch curve with length n.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">koch</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">koch</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+        <span class="n">koch</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">koch</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The result should look like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1565,6 +1821,33 @@ After that, the VA should be able to generate code that uses this module.</p>
 <p>As an example, ask a VA for a program that draws a Sierpiński triangle.
 The code you get should be a good starting place, but you might have to do some debugging.
 If the first attempt doesn’t work, you can tell the VA what happened and ask for help – or you can debug it yourself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
+
+<span class="c1"># Here&#39;s the code I got from ChatGPT in June 2023, with just a few corrections</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_sierpinski</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+            <span class="n">left</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">draw_sierpinski</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">forward</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">draw_sierpinski</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">back</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">forward</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">draw_sierpinski</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">back</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Here’s what the result might look like, although the version you get might be different.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
