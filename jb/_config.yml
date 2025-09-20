@@ -10,7 +10,7 @@ execute:
   execute_notebooks: 'off'
 
 repository:
-  url: https://github.com/AllenDowney/ThinkPython/tree/v3
+  url: https://github.com/digikar99/ThinkPython/tree/moonli
 html:
   use_repository_button: true
 
