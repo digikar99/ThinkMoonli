@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Programming as a way of thinking" href="chap01.html" />
-    <link rel="prev" title="Think Python" href="index.html" />
+    <link rel="prev" title="Think Moonli" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,7 +169,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="index.html">
-                    Think Python
+                    Think Moonli
                 </a>
             </li>
         </ul>
@@ -364,9 +364,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-book-for">Who Is This Book For?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-book">Goals of the Book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-the-book">Navigating the Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-new-in-the-third-edition">What’s new in the third edition?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-for-teachers">Resources for Teachers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
 </ul>
             </nav>
@@ -387,12 +385,9 @@ document.write(`
 <section id="who-is-this-book-for">
 <h2>Who Is This Book For?<a class="headerlink" href="#who-is-this-book-for" title="Link to this heading">#</a></h2>
 <p>If you want to learn to program, you have come to the right place.
-Python is one of the best programming languages for beginners – and it is also one of the most in-demand skills.</p>
-<p>You have also come at the right time, because learning to program now is probably easier than ever.
-With virtual assistants like ChatGPT, you don’t have to learn alone.
-Throughout this book, I’ll suggest ways you can use these tools to accelerate your learning.</p>
+Moonli is one of the best programming languages for beginners – and it is also one of the most in-demand skills.</p>
 <p>This book is primarily for people who have never programmed before and people who have some experience in another programming language.
-If you have substantial experience in Python, you might find the first few chapters too slow.</p>
+If you have substantial experience in Python or Julia or similar languages, you might find the first few chapters too slow.</p>
 <p>One of the challenges of learning to program is that you have to learn <em>two</em> languages: one is the programming language itself; the other is the vocabulary we use to talk about programs.
 If you learn only the programming language, you are likely to have problems when you need to interpret an error message, read documentation, talk to another person, or use virtual assistants.
 If you have done some programming, but you have not also learned this second language, I hope you find this book helpful.</p>
@@ -416,73 +411,35 @@ As we go, I will suggest strategies to help you write correct programs and fix i
 <p>The first six chapters introduce basic elements like arithmetic, conditionals, and loops.
 They also introduce the most important concept in programming, functions, and a powerful way to use them, recursion.</p>
 <p>Chapters 7 and 8 introduce strings – which can represent letter, words, and sentences – and algorithms for working with them.</p>
-<p>Chapters 9 through 12 introduce Python’s core data structures – lists, dictionaries, and tuples – which are powerful tools for writing efficient programs.
+<p>Chapters 9 through 12 introduce Moonli’s core data structures – lists, dictionaries, and tuples – which are powerful tools for writing efficient programs.
 Chapter 12 presents algorithms for analyzing text and randomly generating new text.
 Algorithms like these are at the core of large language models (LLMs), so this chapter will give you an idea of how tools like ChatGPT work.</p>
 <p>Chapter 13 is about ways to store data in long-term storage – files and databases.
 As an exercise, you can write a program that searches a file system and finds duplicate files.</p>
 <p>Chapters 14 through 17 introduce object-oriented programming (OOP), which is a way to organize programs and the data they work with.
 Many Python libraries are written in object-oriented style, so these chapters will help you understand their design – and define your own objects.</p>
-<p>The goal of this book is not to cover the entire Python language.
+<p>The goal of this book is not to cover the entire Moonli language.
 Rather, I focus on a subset of the language that provides the greatest capability with the fewest concepts.
-Nevertheless, Python has a lot of features you can use to solve common problems efficiently.
+Nevertheless, Moonli has a lot of features you can use to solve common problems efficiently.
 Chapter 18 presents some of these features.</p>
 <p>Finally, Chapter 19 presents my parting thoughts and suggestions for continuing your programming journey.</p>
 </section>
-<section id="whats-new-in-the-third-edition">
-<h2>What’s new in the third edition?<a class="headerlink" href="#whats-new-in-the-third-edition" title="Link to this heading">#</a></h2>
-<p>The biggest changes in this edition were driven by two new technologies – Jupyter notebooks and virtual assistants.</p>
-<p>Each chapter of this book is a Jupyter notebook, which is a document that contains both ordinary text and code.
-For me, that makes it easier to write the code, test it, and keep it consistent with the text.
-For you, it means you can run the code, modify it, and work on the exercises, all in one place.
-Instructions for working with the notebooks are in the first chapter.</p>
-<p>The other big change is that I’ve added advice for working with virtual assistants like ChatGPT and using them to accelerate your learning.
-When the previous edition of this book was published in 2016, the predecessors of these tools were far less useful and most people were unaware of them.
-Now they are a standard tool for software engineering, and I think they will be a transformational tool for learning to program – and learning a lot of other things, too.</p>
-<p>The other changes in the book were motivated by my regrets about the second edition.</p>
-<p>The first is that I did not emphasize software testing.
-That was already a regrettable omission in 2016, but with the advent of virtual assistants, automated testing has become even more important.
-So this edition presents Python’s most widely-used testing tools, <code class="docutils literal notranslate"><span class="pre">doctest</span></code> and <code class="docutils literal notranslate"><span class="pre">unittest</span></code>, and includes several exercises where you can practice working with them.</p>
-<p>My other regret is that the exercises in the second edition were uneven – some were more interesting than others and some were too hard.
-Moving to Jupyter notebooks helped me develop and test a more engaging and effective sequence of exercises.</p>
-<p>In this revision, the sequence of topics is almost the same, but I rearranged a few of the chapters and compressed two short chapters into one.
-Also, I expanded the coverage of strings to include regular expressions.</p>
-<p>A few chapters use turtle graphics.
-In previous editions, I used Python’s <code class="docutils literal notranslate"><span class="pre">turtle</span></code> module, but unfortunately it doesn’t work in Jupyter notebooks.
-So I replaced it with a new turtle module that should be easier to use.</p>
-<p>Finally, I rewrote a substantial fraction of the text, clarifying places that needed it and cutting back in places where I was not as concise as I could be.</p>
-<p>I am very proud of this new edition – I hope you like it!</p>
-</section>
 <section id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
-<p>For most programming languages, including Python, there are many tools you can use to write and run programs.
+<p>For most programming languages, including Moonli, there are many tools you can use to write and run programs.
 These tools are called integrated development environments (IDEs).
-In general, there are two kinds of IDEs:</p>
-<ul class="simple">
-<li><p>Some work with files that contain code, so they provide tools for editing and running these files.</p></li>
+In general, there are several kinds of IDEs:</p>
+<ol class="arabic simple">
+<li><p>The most basic is a REPL. We will get into what it means in a moment. But essentially, a REPL provides a way to chat with the development environment in the language that the development environment is meant for.</p></li>
+<li><p>However, REPLs do not have memory. Once the REPL is closed, the code is lost. To avoid this, you can write code in files. Most programming languages these days work with files that contain code. So they provide tools for editing and running these files.</p></li>
 <li><p>Others work primarily with notebooks, which are documents that contain text and code.</p></li>
-</ul>
-<p>For beginners, I recommend starting with a notebook development environment like Jupyter.</p>
-<p>The notebooks for this book are available from an online repository at <a class="reference external" href="https://allendowney.github.io/ThinkPython">https://allendowney.github.io/ThinkPython</a>.</p>
-<p>There are two ways to use them:</p>
-<ul class="simple">
-<li><p>You can download the notebooks and run them on your own computer. In that case, you have to install Python and Jupyter, which is not hard, but if you want to learn Python, it can be frustrating to spend a lot of time installing software.</p></li>
-<li><p>An alternative is to run the notebooks on Colab, which is a Jupyter environment that runs in a web browser, so you don’t have to install anything. Colab is operated by Google, and it is free to use.</p></li>
-</ul>
-<p>If you are just getting started, I strongly recommend you start with Colab.</p>
-</section>
-<section id="resources-for-teachers">
-<h2>Resources for Teachers<a class="headerlink" href="#resources-for-teachers" title="Link to this heading">#</a></h2>
-<p>If you are teaching with this book, here are some resources you might find useful.</p>
-<ul class="simple">
-<li><p>You can find notebooks with solutions to the exercises at <a class="reference external" href="https://allendowney.github.io/ThinkPython">https://allendowney.github.io/ThinkPython</a>, along with links to the additional resources below.</p></li>
-<li><p>Quizzes for each chapter, and a summative quiz for the whole book, are available on request.</p></li>
-<li><p><em>Teaching and Learning with Jupyter</em> is an online book with suggestions for using Jupyter effectively in the classroom. You can read the book at <a class="reference external" href="https://jupyter4edu.github.io/jupyter-edu-book">https://jupyter4edu.github.io/jupyter-edu-book</a></p></li>
-<li><p>One of the best ways to use notebooks is live coding, where an instructor writes code and students follow along in their own notebooks. To learn about live coding – and get other great advice about teaching programming – I recommend the instructor training provided by The Carpentries, at <a class="reference external" href="https://carpentries.github.io/instructor-training">https://carpentries.github.io/instructor-training</a></p></li>
-</ul>
+<li><p>However, while files make it easy to run and understand code from start to end, notebooks make it difficult to understand which order to run the code in, the next time you open the notebook. A few languages (Smalltalk, Common Lisp) work with what are termed “images”. These provide the best of both worlds: You write code in one or more files. You send small parts of the files to the REPL. The REPL responds to your code and produces output. You can load the file into the REPL and make sure that running it from top to bottom produces the correct results.</p></li>
+</ol>
+<p>For beginners, I recommend starting with a REPL that comes with the Moonli binaries. These are available from <a class="github reference external" href="https://github.com/digikar99/moonli/releases/latest">digikar99/moonli</a>.</p>
 </section>
 <section id="acknowledgments">
 <h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading">#</a></h2>
+<p>Full acknowledgements to Allen Downey and the contributors of <em>Think Python</em> who have made it available under Creative Commons license enable free modification and distribution (for non-commercial purposes).</p>
 <p>Many thanks to Jeff Elkner, who translated my Java book into Python,
 which got this project started and introduced me to what has turned out
 to be my favorite language.
@@ -498,7 +455,7 @@ More than 100 sharp-eyed and thoughtful readers have sent in suggestions and cor
 If you include at least part of the sentence the error appears in, that
 makes it easy for me to search. Page and section numbers are fine, too,
 but not quite as easy to work with. Thanks!</p>
-<p><a class="reference external" href="https://allendowney.github.io/ThinkPython/index.html">Think Python: 3rd Edition</a></p>
+<p><a class="reference external" href="https://digikar99.github.io/ThinkMoonli/index.html">Think Moonli</a></p>
 <p>Copyright 2024 <a class="reference external" href="https://allendowney.com">Allen B. Downey</a></p>
 <p>Code license: <a class="reference external" href="https://mit-license.org/">MIT License</a></p>
 <p>Text license: <a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a></p>
@@ -541,7 +498,7 @@ but not quite as easy to work with. Thanks!</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Think Python</p>
+        <p class="prev-next-title">Think Moonli</p>
       </div>
     </a>
     <a class="right-next"
@@ -572,9 +529,7 @@ but not quite as easy to work with. Thanks!</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-book-for">Who Is This Book For?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-book">Goals of the Book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigating-the-book">Navigating the Book</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-new-in-the-third-edition">What’s new in the third edition?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-for-teachers">Resources for Teachers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
 </ul>
   </nav></div>
